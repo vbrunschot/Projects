@@ -62,7 +62,7 @@ namespace Program
     }
 }
 ```
-> Note: We use the local user path in the registry. That way we don't have to be local administrator to add the entry to the registry. Downside is that it'll only run as the current logged in user.
+> Note: We use the local user path in the registry. That way we don't have to be local administrator to create the entry. Downside is that it'll only run as the current logged in user.
 > Path: ```Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run```
 
 # Reflection
