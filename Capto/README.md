@@ -63,6 +63,7 @@ namespace Program
 }
 ```
 > Note: We use the local user path in the registry. That way we don't have to be local administrator to add the entry to the registry. Downside is that it'll only run as the current logged in user.
+> Path: ```Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run```
 
 # Reflection
 This is the part that compiles and runs the payloads. Don't forget to add the necessary libraries for your payload as reference:
