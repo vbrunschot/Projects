@@ -1,0 +1,31 @@
+﻿<Window x:Class="base64_encoder_decoder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:base64_encoder_decoder"
+        mc:Ignorable="d"
+        Title="Base64 Encoder/Decoder" Height="780" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Label Content="Input:"/>
+            <TextBox Height="300" Margin="10" BorderThickness="1" VerticalScrollBarVisibility="Visible" x:Name="tbInput" TextWrapping="Wrap" AcceptsReturn="True"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Content="Output:"/>
+            <TextBox Height="300" Margin="10" BorderThickness="1" VerticalScrollBarVisibility="Visible" x:Name="tbOutput" TextWrapping="Wrap" AcceptsReturn="True"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+            <Button x:Name="btnEncode" Content="Encode" Width="100" Click="btnEncode_Click"/>
+            <Button x:Name="btnDecode" Content="Decode" Width="100" Margin="20,0,20,0" Click="btnDecode_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

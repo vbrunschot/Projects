@@ -1,0 +1,5 @@
+C:\Users\mystr0\source\repos\Project\capto\capto\bin\Debug\capto.exe
+C:\Users\mystr0\source\repos\Project\capto\capto\bin\Debug\capto.pdb
+C:\Users\mystr0\source\repos\Project\capto\capto\obj\Debug\capto.csproj.CoreCompileInputs.cache
+C:\Users\mystr0\source\repos\Project\capto\capto\obj\Debug\capto.exe
+C:\Users\mystr0\source\repos\Project\capto\capto\obj\Debug\capto.pdb
