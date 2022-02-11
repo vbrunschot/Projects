@@ -7,8 +7,6 @@ Upon executing it'll decode the base64 encoded payloads, compile them at runtime
 # Payloads
 It currently holds two basic payloads, one for adding a registry entry and the other is the actual keylogger. You can use the included WPF application: ```base64-encoder-decoder``` (or any other encoder) to add your own payloads.
 
-> Note: The compiler expects the namespace and main class to be called ```Program```. It'll then try to invoke ```Main```.
-
 Keylogger:
 ```cs
 using System;
@@ -66,7 +64,9 @@ namespace Program
 > Path: ```Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run```
 
 # Reflection
-This is the part that compiles and runs the payloads. Don't forget to add the necessary libraries for your payload as reference:
+This is the part that compiles and runs the payloads. Don't forget to add the necessary libraries for your payload as reference.
+
+> Note: After compiling it expects the namespace and main class to be called ```Program```. It'll then try to invoke ```Main```.
 ```cs
 static void CompileAndRun(string payload)
         {
