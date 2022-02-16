@@ -2,7 +2,7 @@
 Capto is a basic POC of a keylogger written in C#. It compiles it payloads at runtime in-memory to avoid antivirus detection. It does this by using encoding and reflection. I initially developed this to show people what havoc a simple program could cause with a low privileged account whilst staying undetected by defense mechanisms. Somewhere along the way I lost the project and I always felt kinda sad about it. I've now rewritten the program but just with the basics. The original version also included a payload where someone could use the Telegram API Bot as C2C (sending screenshots and basic commands to do some enumeration and data exfiltration). 
 
 # Process
-Upon executing it'll decode the base64 encoded payloads, compile them at runtime where it will then copy itself to a writable folder, add a registry entry for persistence and finally start the keylogger to log the keys that are entered. These are written to a update.log file and will be extracted using ftp.
+Upon executing it'll decode the base64 encoded payloads, compile them at runtime where it will then copy itself to a writable folder, add a registry entry for persistence and finally start the keylogger to log the keys that are entered. These are written to a update.log file and extracted using ftp.
 
 # Payloads
 It currently holds two basic payloads, one for adding a registry entry and the other is the actual keylogger. You can use the included WPF application: ```base64-encoder-decoder``` (or any other encoder) to add your own payloads.
