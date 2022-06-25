@@ -1,0 +1,294 @@
+﻿<Window x:Class="MassScannerWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MassScannerWPF"
+        mc:Ignorable="d"
+        Title="MassScanner" Height="790" Width="1200"
+        MinHeight="790"
+        MinWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Resources/icon.png" Height="50" VerticalAlignment="Center"/>
+                <TextBlock Text="MassScanner" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Bahnschrift SemiBold" FontSize="48" FontWeight="Bold">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <!-- Footer -->
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="txtStatus" Margin="195,0,0,0" VerticalAlignment="Bottom">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+
+                <TextBlock x:Name="txtHosts" Margin="2,0,0,0" VerticalAlignment="Bottom">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+
+                <Button x:Name="btnImport" Content="Import" Width="60" Height="20" Background="{x:Null}" Click="btnImport_Click">
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Button.Foreground>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Button.BorderBrush>
+                </Button>
+
+                <Button x:Name="btnExport" Content="Export" Margin="5,0,10,0" Width="60" Height="20" Background="{x:Null}" Click="btnExport_Click" >
+                    <Button.Foreground>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Button.Foreground>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Button.BorderBrush>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- ProgressBar -->
+        <Grid Grid.Row="3">
+            <ProgressBar x:Name="progressBar" Height="30" Margin="10,0,10,0" ValueChanged="progressBar_ValueChanged"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" />   <!-- Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}}" -->
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="194"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Menu -->
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <Border x:Name="brdPingSweep" BorderThickness="1" Height="170" Width="180" CornerRadius="4" VerticalAlignment="Top">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                        </Border.BorderBrush>
+                        <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+
+                            <TextBlock Text="Initiate a ping sweep on IP range" FontSize="10" Margin="0,0,0,5" HorizontalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+
+                            <!-- Start IP -->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" >
+                                <TextBox x:Name="txtSubnet1start" Width="35" Text="192" TextAlignment="Center" GotFocus="txtSubnet1start_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                                <TextBox x:Name="txtSubnet2start" Width="35" Text="168" TextAlignment="Center" Margin="5,0,0,0" GotFocus="txtSubnet2start_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                                <TextBox x:Name="txtSubnet3start" Width="35" Text="0" TextAlignment="Center" Margin="5,0,0,0" GotFocus="txtSubnet3start_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                                <TextBox x:Name="txtSubnet4start" Width="35" Text="0" TextAlignment="Center" Margin="5,0,0,0" GotFocus="txtSubnet4start_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                            </StackPanel>
+
+                            <!-- End IP -->
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="22" Margin="0,5,0,0">
+                                <TextBlock Width="35" Text="{Binding ElementName=txtSubnet1start, Path=Text, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBlock Width="35" Text="{Binding ElementName=txtSubnet2start, Path=Text, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="5,0,0,0">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBox x:Name="txtSubnet3end" Width="35" Text="255" TextAlignment="Center" Margin="5,0,0,0" GotFocus="txtSubnet3end_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                                <TextBox x:Name="txtSubnet4end" Width="35" Text="255" TextAlignment="Center" Margin="5,0,0,0" GotFocus="txtSubnet4end_GotFocus">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                                <CheckBox x:Name="chbRandomize" Content="Randomize host order" IsChecked="True" HorizontalAlignment="Center" FontSize="11">
+                                    <CheckBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </CheckBox.BorderBrush>
+                                </CheckBox>
+                                <Button x:Name="btnPingSweep" Content="Ping Sweep" Height="30" Click="btnPingSweep_Click" Width="150" Margin="0,5,0,0" Background="White">
+                                    <Button.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </Button.BorderBrush>
+                                </Button>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="brdPortScan" BorderThickness="1" Height="160" Width="180" CornerRadius="4" VerticalAlignment="Top" Margin="0,10,0,0" IsEnabled="False">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                        </Border.BorderBrush>
+                        <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                            <TextBlock Text="Initiate portscans on discovered hosts" FontSize="10" Margin="0,0,0,5">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
+                                <TextBlock Text="Port:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="txtPort" Width="60" Height="22" Margin="0,5,0,0" TextAlignment="Center" Text="" TextChanged="txtPort_TextChanged">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                            </StackPanel>
+
+                            <CheckBox x:Name="chbGrabBanner" Content="Grab banner" IsChecked="False" HorizontalAlignment="Center" FontSize="11" Margin="0,20,0,0">
+                                <CheckBox.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </CheckBox.BorderBrush>
+                            </CheckBox>
+
+                            <Button x:Name="btnPortScan" Content="Port Scan" Height="30"  Width="150" Margin="0,5,0,0" Background="#00000000" Click="btnPortScan_Click" IsEnabled="False">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </Button.BorderBrush>
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="brdNmap" BorderThickness="1" Height="276" Width="180" CornerRadius="4" VerticalAlignment="Top" Margin="0,10,0,0" IsEnabled="False">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                        </Border.BorderBrush>
+                        <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+                            <TextBlock Text="Initiate Nmap scans on selected hosts" FontSize="10" Margin="0,0,0,5" HorizontalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <TextBlock Text="Nmap arguments:" TextAlignment="Center"/>
+                                <TextBox x:Name="txtNmapArgs" Width="160" Height="22" TextAlignment="Center" Text="-sV -O -T5" Margin="0,5,0,0">
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                            </StackPanel>
+
+                            <RadioButton x:Name="rdbRunOnPortscan" Content="Scan portscan results" IsChecked="True" Margin="0,10,0,0">
+                                <RadioButton.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </RadioButton.BorderBrush>
+                            </RadioButton>
+                            <RadioButton x:Name="rdbRunOnPingSweep" Content="Scan ping sweep results" >
+                                <RadioButton.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </RadioButton.BorderBrush>
+                            </RadioButton>
+                            <TextBlock Text="or imported hosts" Margin="20,0,0,0"/>
+
+
+                            <CheckBox x:Name="chbScript" Content="Run vuln scripts" IsChecked="False" HorizontalAlignment="Left" FontSize="11" Margin="25,20,0,0" Checked="chbScript_Checked" Unchecked="chbScript_Unchecked">
+                                <CheckBox.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </CheckBox.BorderBrush>
+                            </CheckBox>
+
+                            <CheckBox x:Name="chbVersion" Content="Version detection" IsChecked="True" HorizontalAlignment="Left" FontSize="11" Margin="25,5,0,0" Unchecked="chbVersion_Unchecked" Checked="chbVersion_Checked">
+                                <CheckBox.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </CheckBox.BorderBrush>
+                            </CheckBox>
+
+                            <CheckBox x:Name="chbOSFingerprint" Content="OS fingerprinting" IsChecked="True" HorizontalAlignment="Left" FontSize="11" Margin="25,5,0,0" Checked="chbOSFingerprint_Checked" Unchecked="chbOSFingerprint_Unchecked">
+                                <CheckBox.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </CheckBox.BorderBrush>
+                            </CheckBox>
+
+
+
+                            <Button x:Name="btnNmapScan" Content="Nmap Scan" Height="30"  Width="150" Margin="0,20,0,0" Background="White" Click="btnNmapScan_Click">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                                </Button.BorderBrush>
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+
+                 </StackPanel>
+            </Grid>
+
+            <!-- Left panel -->
+            <Grid Grid.Column="1">
+                <Border BorderThickness="1" CornerRadius="4">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Border.BorderBrush>
+
+                    <ListBox x:Name="lbResults" BorderThickness="0" Margin="5" SelectionChanged="lbResults_SelectionChanged"/>
+                </Border>
+            </Grid>
+
+            <!-- Right panel -->
+            <Grid Grid.Column="2" Margin="5,0,5,0">
+                <Border BorderThickness="1" CornerRadius="4">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                    </Border.BorderBrush>
+
+                    <ListBox x:Name="lbNmap" BorderThickness="0" Margin="5">
+                        <ListBox.Foreground>
+                            <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
+                        </ListBox.Foreground>
+                    </ListBox>
+                </Border>
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+</Window>

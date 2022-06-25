@@ -1,0 +1,17 @@
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\bin\Debug\MassScannerWPF.exe.config
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\bin\Debug\MassScannerWPF.exe
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\bin\Debug\MassScannerWPF.pdb
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.csproj.AssemblyReference.cache
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.csproj.SuggestedBindingRedirects.cache
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MainWindow.g.cs
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\App.g.cs
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF_MarkupCompile.cache
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF_MarkupCompile.lref
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MainWindow.baml
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.g.resources
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.Properties.Resources.resources
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.csproj.GenerateResource.cache
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.csproj.CoreCompileInputs.cache
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.exe
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\MassScannerWPF.pdb
+C:\Users\Marcel\source\repos\MassScannerWPF\MassScannerWPF\obj\Debug\App.baml

@@ -1,0 +1,10 @@
+﻿<Application x:Class="MassScannerWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MassScannerWPF"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+        <Color x:Key="OrangeFont">#FFE48A2F</Color>
+    </Application.Resources>
+</Application>
