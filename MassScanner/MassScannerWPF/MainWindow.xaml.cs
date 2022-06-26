@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿#region Namespaces
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+#endregion
 
 namespace MassScannerWPF
 {
@@ -494,7 +496,7 @@ namespace MassScannerWPF
         }
 
         /// <summary>
-        /// Selects the text in the TextBox when a TextBox control has focus. 
+        /// Selects the text in the TextBox when a TextBox control has focus
         /// </summary>
         /// <param name="sender"></param>
         private void SetFocusOnSelectedTextBox(object sender)
@@ -538,13 +540,13 @@ namespace MassScannerWPF
 
         private void chbScript_Checked(object sender, RoutedEventArgs e)
         {
-            argumentsList.Add(" --script=vuln");
+            argumentsList.Add(" --script=exploit");
             UpdateNmapArguments();
         }
 
         private void chbScript_Unchecked(object sender, RoutedEventArgs e)
         {
-            argumentsList.RemoveAll(x => x == " --script=vuln");
+            argumentsList.RemoveAll(x => x == " --script=exploit");
             UpdateNmapArguments();
         }
 

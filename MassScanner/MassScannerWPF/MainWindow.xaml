@@ -217,20 +217,20 @@
                                 </TextBox>
                             </StackPanel>
 
-                            <RadioButton x:Name="rdbRunOnPortscan" Content="Scan portscan results" IsChecked="True" Margin="10,10,0,0">
+                            <RadioButton x:Name="rdbRunOnPortscan" Content="Use portscan results" IsChecked="True" Margin="10,10,0,0">
                                 <RadioButton.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
                                 </RadioButton.BorderBrush>
                             </RadioButton>
-                            <RadioButton x:Name="rdbRunOnPingSweep" Content="Scan ping sweep results"  Margin="10,0,0,0">
+                            <RadioButton x:Name="rdbRunOnPingSweep" Content="Use ping sweep results"  Margin="10,0,0,0">
                                 <RadioButton.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
                                 </RadioButton.BorderBrush>
                             </RadioButton>
-                            <TextBlock Text="or imported hosts" Margin="20,0,0,0"/>
+                            <TextBlock Text="or imported hosts" Margin="30,0,0,0"/>
 
 
-                            <CheckBox x:Name="chbScript" Content="Run vuln scripts" IsChecked="False" HorizontalAlignment="Left" FontSize="11" Margin="25,20,0,0" Checked="chbScript_Checked" Unchecked="chbScript_Unchecked">
+                            <CheckBox x:Name="chbScript" Content="Run exploit scripts" IsChecked="False" HorizontalAlignment="Left" FontSize="11" Margin="25,20,0,0" Checked="chbScript_Checked" Unchecked="chbScript_Unchecked">
                                 <CheckBox.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource OrangeFont}"/>
                                 </CheckBox.BorderBrush>
