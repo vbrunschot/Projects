@@ -21,12 +21,12 @@ namespace MassScannerWPF
         private static List<string> resultsPingSweep = new List<string>();      // All hosts found during the ping sweep will be added to this list
         private static List<string> resultsPortscans = new List<string>();      // All hosts found during the portscans will be added to this list
 
-        private List<string> argumentsList = new List<string> { "-p- -T5" };    // List containing some default arguments and others will be added/removed by checking the CheckBoxes
+        private List<string> argumentsList = new List<string> { "-T5" };        // List containing some default arguments and others will be added/removed by checking the CheckBoxes
         Timer timer = new Timer();                                              // Timer used for updating Nmap scan processes
 
         int progresscounter = 0;                                                // Counter used for keeping track of the progressbar current value
         int processcounter = 0;                                                 // Counter used for keeping track of the amount of Nmap processes
-        int processtotal = 0;                                                   // Total amount of initial processes to start with        
+        int processtotalcounter = 0;                                            // Total amount of initial processes to start with        
         #endregion
 
         #region Main       
@@ -49,9 +49,9 @@ namespace MassScannerWPF
             var iprange = GenerateIPRange(string.Format("{0}.{1}", txtSubnet1start.Text, txtSubnet2start.Text), Convert.ToInt16(txtSubnet3start.Text), Convert.ToInt16(txtSubnet3end.Text), Convert.ToInt16(txtSubnet4start.Text), Convert.ToInt16(txtSubnet4end.Text));
 
             // Set properties for the ProgressBar and update the status
-            progressBar.Maximum = iprange.Count;
-            progressBar.Minimum = 0;
-            UpdateStatus(string.Format("Running ping sweep on {0} hosts.", iprange.Count));
+            progressBar.Value = 0;
+            progressBar.Maximum = iprange.Count;           
+            UpdateStatus(string.Format("Running ping sweep on {0} host(s).", iprange.Count));
 
             // Initiate the actual ping sweep tasks depending on whether the randomize checkbox is checked
             if (chbRandomize.IsChecked == true)
@@ -79,9 +79,10 @@ namespace MassScannerWPF
                 lbResults.Items.Clear();
 
                 // Set properties for the ProgressBar and update the status
-                progressBar.Maximum = resultsPingSweep.Count;
-                progressBar.Minimum = 0;
-                UpdateStatus(string.Format("Running portscans on port {0} on {1} hosts.", txtPort.Text, resultsPingSweep.Count));
+                progressBar.Value = 0;
+                progressBar.Maximum = resultsPingSweep.Count;                
+                UpdateStatus(string.Format("Running portscans on port {0} on {1} host(s).", txtPort.Text, resultsPingSweep.Count));
+                txtHosts.Text = null;
 
                 // Initiate portscans, with or without banner grabbing
                 foreach (var ip in resultsPingSweep)
@@ -123,7 +124,7 @@ namespace MassScannerWPF
             UpdateCounterNmapProcesses();
             progressBar.Value = 0;
             progressBar.Maximum = processcounter;
-            processtotal = processcounter;
+            processtotalcounter = processcounter;
 
             // Start Timer which is used to update the status of the running Nmap scans
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -258,12 +259,17 @@ namespace MassScannerWPF
             using (var process = new Process())
             {
                 process.StartInfo.FileName = @"C:\Program Files (x86)\Nmap\nmap.exe";
-                process.StartInfo.Arguments = string.Format("{0} {1} -oN {1}.txt", args, ip);
-                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.StartInfo.Arguments = string.Format("{0} {1} -oN {1}.txt", args, ip); 
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 //  process.StartInfo.RedirectStandardOutput = true;
                 //  process.StartInfo.RedirectStandardError = true;
+
+                if ((bool)chbHideWindow.IsChecked)
+                    process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                else
+                    process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                
                 process.Start();
                 //  process.WaitForExit();
                 //  output = process.StandardOutput.ReadToEnd();
@@ -290,7 +296,7 @@ namespace MassScannerWPF
         /// <param name="list">The result list to count the host from</param>
         private void UpdateHosts(List<string> list)
         {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => txtHosts.Text = string.Format("Discovered {0} hosts.", list.Count)));
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => txtHosts.Text = string.Format("Discovered {0} host(s).", list.Count)));
         }
 
         /// <summary>
@@ -360,7 +366,7 @@ namespace MassScannerWPF
                     brdNmap.IsEnabled = true;
 
                     // Update status
-                    UpdateStatus(String.Format("Imported {0} hosts", resultsPingSweep.Count));
+                    UpdateStatus(String.Format("Imported {0} host(s)", resultsPingSweep.Count));
                     txtHosts.Text = null;
                 }
             }
@@ -377,7 +383,7 @@ namespace MassScannerWPF
             {
                 File.AppendAllLines(dialog.FileName, lbResults.Items.Cast<string>().ToArray());
 
-                UpdateStatus(String.Format("Exported {0} hosts", resultsPingSweep.Count));
+                UpdateStatus(String.Format("Exported {0} host(s)", resultsPingSweep.Count));
                 txtHosts.Text = null;
             }
         }
@@ -457,10 +463,10 @@ namespace MassScannerWPF
             UpdateCounterNmapProcesses();
 
             // Calculate the current amount of running processes and update the status
-            int currentstatus = processtotal - processcounter;
+            int currentstatus = processtotalcounter - processcounter;
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => progressBar.Value = currentstatus));
 
-            UpdateStatus(String.Format("Currently running {0} Nmap scan(s) on a total of {1} hosts", processcounter, processtotal));
+            UpdateStatus(String.Format("Currently running {0} Nmap scan(s) on {1} host(s)", processcounter, processtotalcounter));
 
             // Stop timer if there are no more Nmap processes running
             if (processcounter == 0)
